@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Pollos de engorde, cerdos y patos. Consulta precios y realiza tus pedidos por WhatsApp.">
+<title>Granja Animal | Pollos, Cerdos y Patos</title>
+<style>
+:root{
+  --green:#2f6b3b;
+  --dark:#17351f;
+  --light:#f5f7f2;
+  --cream:#fffaf0;
+  --orange:#e88927;
+  --text:#222;
+  --muted:#68716b;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;background:var(--light);color:var(--text);line-height:1.6}
+header{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.96);box-shadow:0 3px 18px rgba(0,0,0,.08)}
+.nav{max-width:1200px;margin:auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:24px;font-weight:900;color:var(--green)}
+.logo span{color:var(--orange)}
+nav a{color:#263129;text-decoration:none;font-weight:700;margin-left:22px}
+nav a:hover{color:var(--green)}
+.hero{min-height:620px;background:linear-gradient(90deg,rgba(10,28,16,.78),rgba(10,28,16,.35)),url("https://commons.wikimedia.org/wiki/Special:Redirect/file/Broiler_house.jpg") center/cover;display:flex;align-items:center}
+.hero-content{max-width:1200px;width:100%;margin:auto;padding:80px 24px;color:#fff}
+.badge{display:inline-block;background:#ffffff22;border:1px solid #ffffff55;border-radius:30px;padding:8px 15px;margin-bottom:18px;font-weight:700}
+.hero h1{font-size:clamp(42px,7vw,76px);line-height:1.05;max-width:850px;margin-bottom:18px}
+.hero p{font-size:21px;max-width:650px;margin-bottom:28px}
+.btn{display:inline-block;text-decoration:none;border:0;border-radius:30px;padding:14px 24px;background:var(--green);color:white;font-weight:800;cursor:pointer;transition:.2s}
+.btn:hover{transform:translateY(-3px);filter:brightness(.95)}
+.btn.whatsapp{background:#1fae59}
+.btn.light{background:white;color:var(--green);margin-left:8px}
+section{max-width:1200px;margin:auto;padding:78px 24px}
+.title{text-align:center;margin-bottom:42px}
+.title h2{font-size:38px;color:var(--dark);margin-bottom:8px}
+.title p{color:var(--muted)}
+.about{background:#fff;border-radius:24px;padding:38px;box-shadow:0 8px 30px #0000000c;font-size:18px}
+.products{display:grid;grid-template-columns:repeat(3,1fr);gap:25px}
+.card{background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 8px 30px #00000010;transition:.25s}
+.card:hover{transform:translateY(-7px)}
+.card img{width:100%;height:280px;object-fit:cover;display:block}
+.card-body{padding:25px}
+.card h3{font-size:27px;color:var(--dark);margin-bottom:8px}
+.available{display:inline-block;background:#e6f6ea;color:#1c7a36;padding:6px 12px;border-radius:20px;font-size:14px;font-weight:800;margin:8px 0 14px}
+.price-box{background:var(--cream);border-radius:15px;padding:14px;margin-top:12px}
+.price{font-size:21px;font-weight:900;color:var(--green)}
+.price small{font-size:14px;color:var(--muted);font-weight:600}
+.features{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.feature{background:#fff;border-radius:18px;padding:28px 18px;text-align:center;box-shadow:0 6px 22px #0000000b}
+.icon{font-size:38px;margin-bottom:10px}
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+.gallery img{width:100%;height:230px;object-fit:cover;border-radius:18px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.step{background:#fff;border-radius:18px;padding:26px;text-align:center}
+.step b{display:block;font-size:20px;color:var(--green);margin-bottom:7px}
+.faq{max-width:900px;margin:auto}
+details{background:#fff;border-radius:14px;padding:18px 20px;margin-bottom:12px;box-shadow:0 4px 16px #00000008}
+summary{cursor:pointer;font-weight:800}
+.contact{background:linear-gradient(135deg,var(--dark),var(--green));color:#fff;border-radius:26px;padding:52px 25px;text-align:center}
+.contact h2{font-size:40px;margin-bottom:10px}
+.contact p{margin:8px 0 24px}
+.contact-info{display:flex;justify-content:center;gap:25px;flex-wrap:wrap;margin:20px 0 25px;font-weight:700}
+footer{background:#102117;color:#fff;text-align:center;padding:30px 20px}
+.float-wa{position:fixed;right:22px;bottom:22px;z-index:999;background:#1fae59;color:#fff;text-decoration:none;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:29px;box-shadow:0 7px 22px #0004}
+@media(max-width:900px){
+  .products{grid-template-columns:1fr}
+  .features{grid-template-columns:repeat(2,1fr)}
+  .gallery{grid-template-columns:repeat(2,1fr)}
+  .steps{grid-template-columns:1fr}
+}
+@media(max-width:650px){
+  nav{display:none}
+  .hero{min-height:560px}
+  .hero-content{padding-top:55px}
+  .hero p{font-size:18px}
+  .features,.gallery{grid-template-columns:1fr}
+  .gallery img{height:260px}
+  section{padding:58px 18px}
+  .about{padding:25px;font-size:16px}
+  .btn.light{margin-left:0;margin-top:10px}
+}
+
+.modal{display:none;position:fixed;inset:0;z-index:3000;background:rgba(0,0,0,.72);align-items:center;justify-content:center;padding:20px}
+.modal.show{display:flex}
+.modal-content{background:#fff;max-width:520px;width:100%;border-radius:24px;overflow:hidden;box-shadow:0 20px 60px #0008;position:relative;animation:aparecer .2s ease}
+.modal-content img{width:100%;height:280px;object-fit:cover}
+.modal-body{padding:28px}
+.modal-body h2{color:var(--dark);font-size:30px;margin-bottom:15px}
+.info-row{display:flex;justify-content:space-between;gap:15px;padding:13px 0;border-bottom:1px solid #eee}
+.info-row:last-child{border-bottom:0}
+.info-label{font-weight:700;color:#68716b}
+.info-value{font-weight:900;color:var(--green);text-align:right}
+.close-modal{position:absolute;right:15px;top:12px;width:40px;height:40px;border:0;border-radius:50%;background:#fff;color:#222;font-size:25px;cursor:pointer;box-shadow:0 2px 10px #0003}
+.clickable{cursor:pointer}
+.clickable:hover{filter:brightness(.9)}
+@keyframes aparecer{from{transform:scale(.92);opacity:0}to{transform:scale(1);opacity:1}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">🌱 Granja <span>Animal</span></div>
+    <nav>
+      <a href="#inicio">Inicio</a>
+      <a href="#productos">Productos</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#galeria">Galería</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="inicio">
+  <div class="hero-content">
+    <div class="badge">✅ PRODUCTOS DISPONIBLES</div>
+    <h1>Pollos, Cerdos y Patos</h1>
+    <p>Animales de granja de calidad, con atención directa y personalizada. Consulta nuestros precios y haz tu pedido por WhatsApp.</p>
+    <a class="btn whatsapp" href="https://wa.me/573026996840" target="_blank">💬 Pedir por WhatsApp</a>
+    <a class="btn light" href="#productos">Ver precios</a>
+  </div>
+</section>
+
+<section id="nosotros">
+  <div class="title"><h2>Sobre nuestro negocio</h2><p>Calidad, atención y confianza</p></div>
+  <div class="about">
+    <p>Somos un negocio independiente dedicado a la <strong>cría y comercialización de pollos de engorde, cerdos y patos.</strong> Nuestro objetivo es ofrecer animales de buena calidad, brindando a nuestros clientes información clara sobre nuestros productos y una atención cercana y confiable.</p>
+    <br>
+    <p>Contamos con diferentes opciones según las necesidades y preferencias de nuestros clientes. Puedes conocer nuestros animales, consultar precios y comunicarte directamente con nosotros para realizar tus pedidos.</p>
+    <br>
+    <p><strong>Pollos de engorde, cerdos y patos de calidad, con atención directa y personalizada.</strong></p>
+  </div>
+</section>
+
+<section id="productos">
+  <div class="title"><h2>Nuestros productos</h2><p>Todos nuestros productos aparecen actualmente como disponibles.</p></div>
+  <div class="products">
+
+    <article class="card">
+      <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Broiler_house.jpg" alt="Pollo de engorde" class="clickable" onclick="abrirPollo()" title="Haz clic para ver información">
+      <div class="card-body">
+        <h3>🐔 Pollo de engorde</h3>
+        <span class="available">● Disponible</span>
+        <p>Pollos de engorde para clientes que buscan adquirir animales por peso.</p>
+        <div class="price-box">
+          <div class="price">$9.000 COP <small>por kilogramo</small></div>
+        </div>
+        <br>
+        <a class="btn whatsapp" href="https://wa.me/573026996840?text=Hola,%20estoy%20interesado%20en%20los%20pollos%20de%20engorde." target="_blank">Consultar / Comprar</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Yorkshire_pigs_at_animal_sanctuary.jpg" alt="Cerdo" class="clickable" onclick="abrirCerdo()" title="Haz clic para ver información">
+      <div class="card-body">
+        <h3>🐷 Cerdo</h3>
+        <span class="available">● Disponible</span>
+        <p>Cerdos disponibles para compra según peso y necesidad del cliente.</p><p><strong>👆 Haz clic en la foto para ver toda la información.</strong></p>
+        <div class="price-box">
+          <div class="price">$11.000 COP <small>por kilogramo</small></div>
+        </div>
+        <br>
+        <a class="btn whatsapp" href="https://wa.me/573026996840?text=Hola,%20estoy%20interesado%20en%20los%20cerdos." target="_blank">Consultar / Comprar</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/White_domesticated_duck,_stretching.jpg" alt="Pato" class="clickable" onclick="abrirPato()" title="Haz clic para ver información">
+      <div class="card-body">
+        <h3>🦆 Patos</h3>
+        <span class="available">● Disponible</span>
+        <p>Patos disponibles en presentación hembra o macho entero.</p><p><strong>👆 Haz clic en la foto para ver toda la información.</strong></p>
+        <div class="price-box">
+          <p class="price">Hembra: $40.000 COP</p>
+          <p class="price">Macho: $60.000 COP</p>
+          <small>Precio por pato entero.</small>
+        </div>
+        <br>
+        <a class="btn whatsapp" href="https://wa.me/573026996840?text=Hola,%20estoy%20interesado%20en%20los%20patos." target="_blank">Consultar / Comprar</a>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section>
+  <div class="title"><h2>¿Por qué elegirnos?</h2><p>Una compra sencilla y atención directa</p></div>
+  <div class="features">
+    <div class="feature"><div class="icon">⭐</div><h3>Calidad</h3><p>Animales seleccionados y cuidados.</p></div>
+    <div class="feature"><div class="icon">🤝</div><h3>Confianza</h3><p>Trato directo con nuestros clientes.</p></div>
+    <div class="feature"><div class="icon">💬</div><h3>Atención</h3><p>Información clara sobre precios y disponibilidad.</p></div>
+    <div class="feature"><div class="icon">📱</div><h3>WhatsApp</h3><p>Realiza tus consultas y pedidos fácilmente.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="title"><h2>¿Cómo comprar?</h2><p>Solo necesitas seguir estos pasos</p></div>
+  <div class="steps">
+    <div class="step"><b>1. Elige</b><p>Selecciona pollos, cerdos o patos.</p></div>
+    <div class="step"><b>2. Escríbenos</b><p>Contáctanos por WhatsApp al 302 699 6840.</p></div>
+    <div class="step"><b>3. Coordina</b><p>Confirmamos tu pedido y los detalles de entrega o recogida.</p></div>
+  </div>
+</section>
+
+<section id="galeria">
+  <div class="title"><h2>Galería</h2><p>Reemplaza estas imágenes por fotografías reales de tus animales.</p></div>
+  <div class="gallery">
+    <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Broiler_house.jpg" alt="Galería 1">
+    <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Pig_farm.jpg" alt="Galería 2">
+    <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Ducks_on_a_farm.jpg" alt="Galería 3">
+    <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Broiler_house.jpg" alt="Galería 4">
+  </div>
+</section>
+
+<section>
+  <div class="title"><h2>Preguntas frecuentes</h2></div>
+  <div class="faq">
+    <details><summary>¿Qué animales tienen disponibles?</summary><p>Actualmente tenemos disponibles pollos de engorde, cerdos y patos.</p></details>
+    <details><summary>¿Cuál es el precio del pollo?</summary><p>$9.000 pesos colombianos por kilogramo.</p></details>
+    <details><summary>¿Cuál es el precio del cerdo?</summary><p>$11.000 pesos colombianos por kilogramo.</p></details>
+    <details><summary>¿Cuánto cuesta un pato?</summary><p>Hembra de pato entero: $40.000 COP. Macho de pato entero: $60.000 COP.</p></details>
+    <details><summary>¿Cómo puedo hacer un pedido?</summary><p>Escríbenos directamente por WhatsApp al 302 699 6840.</p></details>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="contact">
+    <h2>¿Quieres hacer un pedido?</h2>
+    <p>Comunícate directamente con nosotros para consultar o comprar.</p>
+    <div class="contact-info">
+      <span>📱 WhatsApp: 302 699 6840</span>
+      <span>🟢 Todos los productos disponibles</span>
+    </div>
+    <a class="btn" href="https://wa.me/573026996840" target="_blank">💬 Abrir WhatsApp</a>
+  </div>
+</section>
+</main>
+
+<a class="float-wa" href="https://wa.me/573026996840" target="_blank" aria-label="WhatsApp">💬</a>
+
+
+<section id="creditos" style="padding-top:25px;padding-bottom:25px">
+  <div style="max-width:900px;margin:auto;background:#fff;border-radius:16px;padding:22px;text-align:center;color:#68716b;font-size:13px">
+    <strong>Fotografías utilizadas:</strong><br>
+    Cerdo Yorkshire: Mark Peters, Wikimedia Commons, licencia CC BY 2.0.<br>
+    Pato doméstico blanco: Ernst Vikne, Wikimedia Commons, licencia CC BY-SA 2.0.
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Granja Animal · Pollos de engorde · Cerdos · Patos</p>
+  <p>Atención directa y personalizada por WhatsApp: 302 699 6840</p>
+</footer>
+
+<div class="modal" id="modalPollo" onclick="cerrarPollo(event)">
+  <div class="modal-content">
+    <button class="close-modal" onclick="cerrarPollo()">×</button>
+    <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Broiler_house.jpg" alt="Pollo de engorde">
+    <div class="modal-body">
+      <h2>🐔 Información del pollo</h2>
+      <div class="info-row"><span class="info-label">Producto</span><span class="info-value">Pollo de engorde</span></div>
+      <div class="info-row"><span class="info-label">Peso aproximado</span><span class="info-value">6 libras</span></div>
+      <div class="info-row"><span class="info-label">Edad</span><span class="info-value">45 días</span></div>
+      <div class="info-row"><span class="info-label">Precio</span><span class="info-value">$9.000 COP / kg</span></div>
+      <div class="info-row"><span class="info-label">Disponibilidad</span><span class="info-value">Disponible</span></div>
+      <br>
+      <a class="btn whatsapp" href="https://wa.me/573026996840?text=Hola,%20estoy%20interesado%20en%20los%20pollos%20de%20engorde." target="_blank">💬 Comprar por WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<script>
+function abrirPollo(){
+  document.getElementById('modalPollo').classList.add('show');
+  document.body.style.overflow='hidden';
+}
+function cerrarPollo(event){
+  if(!event || event.target.id==='modalPollo' || event.currentTarget.classList.contains('close-modal')){
+    document.getElementById('modalPollo').classList.remove('show');
+    document.body.style.overflow='';
+  }
+}
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){
+    document.getElementById('modalPollo').classList.remove('show');
+    document.body.style.overflow='';
+  }
+});
+</script>
+
+
+<div class="modal" id="modalCerdo" onclick="cerrarModal('modalCerdo',event)">
+  <div class="modal-content">
+    <button class="close-modal" onclick="cerrarModal('modalCerdo')">×</button>
+    <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Yorkshire_pigs_at_animal_sanctuary.jpg" alt="Cerdo Yorkshire">
+    <div class="modal-body">
+      <h2>🐷 Información del cerdo</h2>
+      <div class="info-row"><span class="info-label">Producto</span><span class="info-value">Cerdo</span></div>
+      <div class="info-row"><span class="info-label">Peso aproximado</span><span class="info-value">60 / 70 / 80 kg</span></div>
+      <div class="info-row"><span class="info-label">Edad</span><span class="info-value">4 meses</span></div>
+      <div class="info-row"><span class="info-label">Raza</span><span class="info-value">Yorkshire / Landrace</span></div>
+      <div class="info-row"><span class="info-label">Precio</span><span class="info-value">$11.000 COP / kg</span></div>
+      <div class="info-row"><span class="info-label">Disponibilidad</span><span class="info-value">Disponible</span></div>
+      <br>
+      <a class="btn whatsapp" href="https://wa.me/573026996840?text=Hola,%20estoy%20interesado%20en%20los%20cerdos." target="_blank">💬 Comprar por WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="modalPato" onclick="cerrarModal('modalPato',event)">
+  <div class="modal-content">
+    <button class="close-modal" onclick="cerrarModal('modalPato')">×</button>
+    <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/White_domesticated_duck,_stretching.jpg" alt="Pato">
+    <div class="modal-body">
+      <h2>🦆 Información del pato</h2>
+      <div class="info-row"><span class="info-label">Producto</span><span class="info-value">Pato</span></div>
+      <div class="info-row"><span class="info-label">Peso aproximado</span><span class="info-value">3 / 4 libras</span></div>
+      <div class="info-row"><span class="info-label">Edad</span><span class="info-value">6 / 8 meses</span></div>
+      <div class="info-row"><span class="info-label">Disponibilidad</span><span class="info-value">Disponible</span></div>
+      <div class="info-row"><span class="info-label">Hembra</span><span class="info-value">$40.000 COP</span></div>
+      <div class="info-row"><span class="info-label">Macho</span><span class="info-value">$60.000 COP</span></div>
+      <br>
+      <a class="btn whatsapp" href="https://wa.me/573026996840?text=Hola,%20estoy%20interesado%20en%20los%20patos." target="_blank">💬 Comprar por WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<script>
+function abrirCerdo(){document.getElementById('modalCerdo').classList.add('show');document.body.style.overflow='hidden';}
+function abrirPato(){document.getElementById('modalPato').classList.add('show');document.body.style.overflow='hidden';}
+function cerrarModal(id,event){
+  if(!event || event.target.id===id || event.currentTarget.classList.contains('close-modal')){
+    document.getElementById(id).classList.remove('show');
+    document.body.style.overflow='';
+  }
+}
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){
+    document.querySelectorAll('.modal').forEach(m=>m.classList.remove('show'));
+    document.body.style.overflow='';
+  }
+});
+</script>
+
+</body>
+</html>
